@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.coverage
+
+# App / datos locales
+*.db
+*.sqlite3
+instance/
+backups/
+media/uploads/
+
+# Entornos y secretos
+.env
+.env.*
+*.pem
+*.key
+
+# Spec Kit efímero (generado por agentes, no versionar salidas)
+# Se versiona .specify/memory/constitution.md y specs/ como diseño;
+# se excluyen credenciales de agentes:
+.opencode/*auth*
+.opencode/*token*
+.opencode/*credentials*
+
+# OS / editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
