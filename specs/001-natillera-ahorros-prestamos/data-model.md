@@ -43,7 +43,8 @@ transiciones solo hacia adelante, registradas con actor y fecha.
 ## Cuota
 
 Obligación periódica inmutable salvo su estado derivado. Atributos: id,
-prestamo_id (FK), número, valor, fecha_vencimiento, abonado (acumulado),
+prestamo_id (FK), número, valor, capital, interes (desglose del motor al generar
+el cronograma), fecha_vencimiento, abonado (acumulado),
 estado (Pendiente | Parcial | Pagada | En mora — mora automática tras días de
 gracia, clarify A).
 Efecto de abono (FR-008): incrementa `abonado`, recalcula saldo del préstamo,

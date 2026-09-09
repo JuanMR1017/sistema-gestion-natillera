@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block titulo %}Administración · Natillera{% endblock %}
+{% block contenido %}
+<section class="tarjeta">
+  <h1>Administración</h1>
+  <p>Usuarios registrados: {{ total_usuarios }}</p>
+  <p><a href="/admin/ahorradores">Ahorradores</a> · <a href="/admin/reportes">Reportes</a></p>
+</section>
+{% endblock %}

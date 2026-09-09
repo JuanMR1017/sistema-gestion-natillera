@@ -1,0 +1,25 @@
+[project]
+name = "natillera"
+version = "0.1.0"
+description = "Sistema de Gestión de Natillera (Ahorros y Préstamos) — ITM"
+requires-python = ">=3.13"
+dependencies = [
+  "fastapi",
+  "uvicorn[standard]",
+  "jinja2",
+  "sqlalchemy",
+  "bcrypt",
+  "python-multipart",
+  "itsdangerous",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+# B008: idiom estándar de FastAPI (Depends en defaults)
+ignore = ["B008"]

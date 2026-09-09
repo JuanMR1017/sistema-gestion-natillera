@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block titulo %}Aportes · Natillera{% endblock %}
+{% block contenido %}
+<section class="tarjeta">
+  <h1>Registrar aporte</h1>
+  <form class="campo" method="post" action="/admin/aportes">
+    <label>Ahorrador
+      <select name="ahorrador_id" required>
+        {% for a in ahorradores %}
+        <option value="{{ a.id }}">{{ a.nombre }} ({{ a.documento }})</option>
+        {% endfor %}
+      </select>
+    </label>
+    <label>Fecha <input name="fecha" type="date" required></label>
+    <label>Monto (COP) <input name="monto" type="number" min="1" step="1" required></label>
+    <label>Comprobante <input name="comprobante" required></label>
+    <button type="submit">Registrar aporte</button>
+  </form>
+</section>
+<section class="tarjeta">
+  <h2>Últimos aportes</h2>
+  <table>
+    <tr><th>Fecha</th><th>Ahorrador</th><th>Monto</th><th>Comprobante</th></tr>
+    {% for ap in aportes %}
+    <tr><td>{{ ap.fecha }}</td><td>{{ ap.ahorrador_id }}</td><td>{{ ap.monto }}</td><td>{{ ap.comprobante }}</td></tr>
+    {% endfor %}
+  </table>
+</section>
+{% endblock %}

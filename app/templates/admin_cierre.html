@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block titulo %}Cierre anual · Natillera{% endblock %}
+{% block contenido %}
+<section class="tarjeta">
+  <h1>Cierre y reparto anual</h1>
+  <form class="campo" method="post" action="/admin/cierre">
+    <label>Año del ciclo <input name="ciclo_ano" type="number" min="2000" max="2100" required></label>
+    <label>Fecha de corte <input name="fecha_corte" type="date" required></label>
+    <button type="submit">Ejecutar reparto</button>
+  </form>
+</section>
+{% if reparto %}
+<section class="tarjeta">
+  <h2>Reparto {{ reparto.ciclo_ano }} (corte {{ reparto.fecha_corte }})</h2>
+  <p>Fondo total: ${{ reparto.total_fondo }} · Utilidades: ${{ reparto.total_utilidades }}</p>
+  <table>
+    <tr><th>Ahorrador</th><th>Ahorro</th><th>Utilidad</th><th>Total</th></tr>
+    {% for li in reparto.lineas %}
+    <tr><td>{{ li.ahorrador_id }}</td><td>{{ li.ahorro_aportado }}</td><td>{{ li.utilidad_proporcional }}</td><td>{{ li.total }}</td></tr>
+    {% endfor %}
+  </table>
+</section>
+{% endif %}
+{% endblock %}

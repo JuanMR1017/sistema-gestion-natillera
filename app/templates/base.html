@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block titulo %}Natillera{% endblock %}</title>
+<link rel="stylesheet" href="/static/css/main.css">
+</head>
+<body>
+<header class="topbar">
+  <span class="marca">Natillera</span>
+  <nav>
+    <a href="/">Inicio</a>
+    <a href="/prestamos">Préstamo</a>
+    <a href="/admin">Admin</a>
+    <a href="/notificaciones">Avisos</a>
+  </nav>
+</header>
+<main class="contenedor">
+  {% if error %}<p class="alerta error">{{ error }}</p>{% endif %}
+  {% if ok %}<p class="alerta ok">{{ ok }}</p>{% endif %}
+  {% block contenido %}{% endblock %}
+</main>
+</body>
+</html>

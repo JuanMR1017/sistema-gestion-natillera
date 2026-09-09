@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block titulo %}Mi saldo · Natillera{% endblock %}
+{% block contenido %}
+<section class="tarjeta">
+  <h1>Mi saldo</h1>
+  <p class="saldo">${{ saldo }}</p>
+  <p>Rendimiento proyectado (mes, tasa vigente {{ tasa_pct }}%): ${{ proyectado }}</p>
+</section>
+<section class="tarjeta">
+  <h2>Historial de aportes</h2>
+  <table>
+    <tr><th>Fecha</th><th>Monto</th><th>Comprobante</th></tr>
+    {% for ap in aportes %}
+    <tr><td>{{ ap.fecha }}</td><td>{{ ap.monto }}</td><td>{{ ap.comprobante }}</td></tr>
+    {% endfor %}
+  </table>
+</section>
+{% endblock %}

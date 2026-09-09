@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block titulo %}Ahorradores · Natillera{% endblock %}
+{% block contenido %}
+<section class="tarjeta">
+  <h1>Ahorradores</h1>
+  <form class="campo" method="post" action="/admin/ahorradores">
+    <label>Nombre <input name="nombre" required></label>
+    <label>Documento <input name="documento" required></label>
+    <label>Área <input name="area" required></label>
+    <label>Fecha de ingreso <input name="fecha_ingreso" type="date" required></label>
+    <label>Usuario de acceso (opcional) <input name="username"></label>
+    <label>Contraseña (opcional) <input name="password" type="password"></label>
+    <button type="submit">Registrar ahorrador</button>
+  </form>
+</section>
+<section class="tarjeta">
+  <h2>Registrados</h2>
+  <table>
+    <tr><th>Nombre</th><th>Documento</th><th>Área</th><th>Ingreso</th></tr>
+    {% for a in ahorradores %}
+    <tr><td>{{ a.nombre }}</td><td>{{ a.documento }}</td><td>{{ a.area }}</td><td>{{ a.fecha_ingreso }}</td></tr>
+    {% endfor %}
+  </table>
+</section>
+{% endblock %}
