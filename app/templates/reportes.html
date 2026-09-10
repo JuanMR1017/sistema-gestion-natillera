@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block clase %}amplio{% endblock %}
+{% block titulo %}Reportes · Administración{% endblock %}
+{% block contenido %}
+<section class="tarjeta">
+  <h1>Reportes</h1>
+  <form method="get" action="/admin/reportes">
+    <label>Tipo
+      <select name="tipo">
+        {% for t in tipos %}
+        <option value="{{ t }}" {% if t == tipo %}selected{% endif %}>{{ t }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <label>Desde <input name="desde" type="date" value="{{ desde }}"></label>
+    <label>Hasta <input name="hasta" type="date" value="{{ hasta }}"></label>
+    <button type="submit">Generar</button>
+  </form>
+  {% if reporte %}
+  <h2>{{ tipo }} · Total: {{ reporte.total }}</h2>
+  <table>
+    <tr>{% for c in reporte.columnas %}<th>{{ c }}</th>{% endfor %}</tr>
+    {% for fila in reporte.filas %}
+    <tr>{% for v in fila %}<td>{{ v }}</td>{% endfor %}</tr>
+    {% else %}
+    <tr><td colspan="{{ reporte.columnas|length }}">Sin movimientos en el rango.</td></tr>
+    {% endfor %}
+    <tr><td><strong>TOTAL</strong></td>
+      {% for c in reporte.columnas[1:-1] %}<td></td>{% endfor %}
+      <td><strong>{{ reporte.total }}</strong></td></tr>
+  </table>
+  <p><a href="/admin/reportes/descargar?tipo={{ tipo }}&desde={{ desde }}&hasta={{ hasta }}&formato=xlsx">Descargar Excel</a> ·
+  <a href="/admin/reportes/descargar?tipo={{ tipo }}&desde={{ desde }}&hasta={{ hasta }}&formato=pdf">Descargar PDF</a></p>
+  {% endif %}
+</section>
+{% endblock %}

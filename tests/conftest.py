@@ -36,6 +36,7 @@ def db():
     from app.models import ahorrador as _m_ahorrador
     from app.models import aporte as _m_aporte
     from app.models import cuota as _m_cuota
+    from app.models import notificacion as _m_notificacion
     from app.models import prestamo as _m_prestamo
     from app.models import reparto as _m_reparto
 
@@ -46,6 +47,7 @@ def db():
     assert _m_ahorrador.Ahorrador.__tablename__ == "ahorradores"
     assert _m_aporte.Aporte.__tablename__ == "aportes"
     assert _m_prestamo.Prestamo.__tablename__ == "prestamos"
+    assert _m_notificacion.Notificacion.__tablename__ == "notificaciones"
     assert _m_cuota.Cuota.__tablename__ == "cuotas"
     assert _m_reparto.Reparto.__tablename__ == "repartos"
 

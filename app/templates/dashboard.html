@@ -1,18 +1,53 @@
 {% extends "base.html" %}
 {% block titulo %}Mi saldo · Natillera{% endblock %}
 {% block contenido %}
-<section class="tarjeta">
-  <h1>Mi saldo</h1>
-  <p class="saldo">${{ saldo }}</p>
-  <p>Rendimiento proyectado (mes, tasa vigente {{ tasa_pct }}%): ${{ proyectado }}</p>
+<p class="eyebrow">Mi fondo · Natillera</p>
+<div class="saludo">
+  <h1>Hola, {{ nombre }}</h1>
+  <span class="avatar">{{ iniciales }}</span>
+</div>
+
+<section class="tarjeta-saldo">
+  <p class="etiqueta">Saldo acumulado</p>
+  <p class="monto">${{ saldo }}</p>
+  {% if meta %}
+  <div class="barra"><span style="width: {{ avance }}%"></span></div>
+  <div class="meta"><span>{{ avance }}% de la meta</span><span>${{ meta }}</span></div>
+  {% endif %}
+  <div class="meta"><span>Rendimiento proyectado (mes, tasa {{ tasa_pct }}%)</span><span>${{ proyectado }}</span></div>
 </section>
+
+<div class="acciones">
+  <a class="btn btn-primario" href="/prestamos/nuevo">Solicitar préstamo</a>
+  <a class="btn btn-claro" href="/prestamos">Mis préstamos</a>
+</div>
+
+<section class="stats">
+  <div class="stat">
+    <div class="numero">{{ naportes }}</div>
+    <div class="detalle">Aportes registrados</div>
+  </div>
+  <div class="stat lila">
+    <div class="numero">${{ proyectado }}</div>
+    <div class="detalle">Rendimiento proyectado</div>
+  </div>
+</section>
+
+<div class="seccion">
+  <h2>Movimientos recientes</h2>
+  <a href="/prestamos">Ver todos</a>
+</div>
 <section class="tarjeta">
-  <h2>Historial de aportes</h2>
-  <table>
-    <tr><th>Fecha</th><th>Monto</th><th>Comprobante</th></tr>
-    {% for ap in aportes %}
-    <tr><td>{{ ap.fecha }}</td><td>{{ ap.monto }}</td><td>{{ ap.comprobante }}</td></tr>
-    {% endfor %}
-  </table>
+  {% for ap in aportes %}
+  <div class="mov">
+    <span class="chip verde">+</span>
+    <span class="txt"><span class="titulo">Aporte {{ ap.comprobante }}</span><br>
+      <span class="fecha">{{ ap.fecha }}</span></span>
+    <span class="valor pos">+{{ ap.monto }}</span>
+  </div>
+  {% else %}
+  <p>Aún no tienes movimientos.</p>
+  {% endfor %}
 </section>
 {% endblock %}
+{% block tabs %}{% set tab = 'inicio' %}{% include "tabs.html" %}{% endblock %}

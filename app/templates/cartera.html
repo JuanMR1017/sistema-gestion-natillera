@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block clase %}amplio{% endblock %}
+{% block titulo %}Cartera · Administración{% endblock %}
+{% block contenido %}
+<section class="tarjeta">
+  <h1>Cartera: préstamos activos y mora</h1>
+  {% for p in prestamos %}
+  <article class="tarjeta">
+    <h2>Préstamo #{{ p.id }} · {{ p.solicitante.nombre }}
+    ({{ p.solicitante.documento }}) · {{ p.estado }}</h2>
+    <p>Monto ${{ p.monto }} · Saldo pendiente ${{ saldo_pendiente(p) }}</p>
+    <table>
+      <tr><th>Cuota</th><th>Valor</th><th>Abonado</th><th>Remanente</th>
+        <th>Vence</th><th>Estado</th><th>Abonar</th></tr>
+      {% for c in p.cuotas %}
+      <tr><td>{{ c.numero }}</td><td>{{ c.valor }}</td><td>{{ c.abonado }}</td>
+        <td>{{ c.valor - c.abonado }}</td><td>{{ c.fecha_vencimiento }}</td>
+        <td>{{ c.estado }}</td>
+        <td>
+          {% if c.estado != "Pagada" %}
+          <form method="post" action="/admin/pagos" style="display:inline">
+            <input type="hidden" name="cuota_id" value="{{ c.id }}">
+            <input name="valor" type="number" min="1" max="{{ c.valor - c.abonado }}"
+              placeholder="Valor" required>
+            <input name="fecha" type="date" required>
+            <button type="submit">Abonar</button>
+          </form>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </article>
+  {% else %}
+  <p>No hay préstamos vigentes en cartera.</p>
+  {% endfor %}
+</section>
+{% endblock %}

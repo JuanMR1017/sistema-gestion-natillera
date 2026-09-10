@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{% block titulo %}Natillera{% endblock %}</title>
+<link rel="icon" href="data:,">
 <link rel="stylesheet" href="/static/css/main.css">
 </head>
 <body>
@@ -14,12 +15,16 @@
     <a href="/prestamos">Préstamo</a>
     <a href="/admin">Admin</a>
     <a href="/notificaciones">Avisos</a>
+    <form method="post" action="/logout" style="display:inline">
+      <button type="submit">Salir</button>
+    </form>
   </nav>
 </header>
-<main class="contenedor">
+<main class="contenedor {% block clase %}movil{% endblock %}">
   {% if error %}<p class="alerta error">{{ error }}</p>{% endif %}
   {% if ok %}<p class="alerta ok">{{ ok }}</p>{% endif %}
   {% block contenido %}{% endblock %}
 </main>
+{% block tabs %}{% endblock %}
 </body>
 </html>

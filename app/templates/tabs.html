@@ -1,0 +1,6 @@
+{# Tab bar inferior del ahorrador. Define `tab` antes de incluir. #}
+<nav class="tabbar">
+  <a href="/" class="{% if tab == 'inicio' %}activa{% endif %}">Inicio</a>
+  <a href="/prestamos" class="{% if tab == 'prestamos' %}activa{% endif %}">Préstamos</a>
+  <a href="/notificaciones" class="{% if tab == 'avisos' %}activa{% endif %}">Avisos</a>
+</nav>

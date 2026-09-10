@@ -11,6 +11,7 @@ dependencies = [
   "bcrypt",
   "python-multipart",
   "itsdangerous",
+  "openpyxl",
 ]
 
 [tool.pytest.ini_options]

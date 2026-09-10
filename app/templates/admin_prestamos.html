@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block clase %}amplio{% endblock %}
+{% block titulo %}Préstamos · Administración{% endblock %}
+{% block contenido %}
+<section class="tarjeta">
+  <h1>Solicitudes pendientes</h1>
+  {% for p in pendientes %}
+  <article class="tarjeta">
+    <h2>Solicitud #{{ p.id }} · {{ p.solicitante.nombre }} ({{ p.solicitante.documento }})</h2>
+    <p>Monto ${{ p.monto }} a {{ p.plazo_meses }} meses · Motivo: {{ p.motivo }}</p>
+    <form method="post" action="/admin/prestamos/{{ p.id }}/aprobar" style="display:inline">
+      <button type="submit">Aprobar</button>
+    </form>
+    <form method="post" action="/admin/prestamos/{{ p.id }}/rechazar" style="display:inline">
+      <input name="motivo" type="text" placeholder="Motivo del rechazo" required>
+      <button type="submit">Rechazar</button>
+    </form>
+  </article>
+  {% else %}
+  <p>No hay solicitudes pendientes.</p>
+  {% endfor %}
+</section>
+<section class="tarjeta">
+  <h2>Historial reciente</h2>
+  <table>
+    <tr><th>#</th><th>Solicitante</th><th>Monto</th><th>Plazo</th><th>Estado</th></tr>
+    {% for p in otros %}
+    <tr><td>{{ p.id }}</td><td>{{ p.solicitante.nombre }}</td><td>{{ p.monto }}</td>
+      <td>{{ p.plazo_meses }}</td><td>{{ p.estado }}</td></tr>
+    {% endfor %}
+  </table>
+</section>
+{% endblock %}

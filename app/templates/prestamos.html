@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block titulo %}Mis préstamos · Natillera{% endblock %}
+{% block contenido %}
+<p class="eyebrow">Crédito interno</p>
+<div class="saludo"><h1>Mis préstamos</h1></div>
+<div class="acciones">
+  <a class="btn btn-primario" href="/prestamos/nuevo">Nueva solicitud</a>
+</div>
+{% for p in prestamos %}
+<section class="tarjeta">
+  <div class="seccion">
+    <h2>Solicitud #{{ p.id }} · {{ p.estado }}</h2>
+  </div>
+  <div class="mov">
+    <span class="chip azul">$</span>
+    <span class="txt"><span class="titulo">${{ p.monto }} a {{ p.plazo_meses }} meses</span><br>
+      <span class="fecha">{{ p.motivo }}</span></span>
+  </div>
+  {% if p.cuotas %}
+  <table>
+    <tr><th>#</th><th>Valor</th><th>Vence</th><th>Estado</th></tr>
+    {% for c in p.cuotas %}
+    <tr><td>{{ c.numero }}</td><td>{{ c.valor }}</td><td>{{ c.fecha_vencimiento }}</td><td>{{ c.estado }}</td></tr>
+    {% endfor %}
+  </table>
+  {% endif %}
+</section>
+{% else %}
+<section class="tarjeta"><p>Aún no tienes solicitudes.</p></section>
+{% endfor %}
+{% endblock %}
+{% block tabs %}{% set tab = 'prestamos' %}{% include "tabs.html" %}{% endblock %}

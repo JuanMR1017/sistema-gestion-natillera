@@ -110,7 +110,7 @@ routes, templates, static) y `tests/` (acceptance, integration, unit) en la raí
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T026 [P] [US3] Acceptance tests HU-02/HU-03 (solicitud, aprobación/rechazo, topes, mora) in tests/acceptance/test_hu0203_prestamos.py
+- [X] T026 [P] [US3] Acceptance tests HU-02/HU-03 (solicitud, aprobación/rechazo, topes, mora) in tests/acceptance/test_hu0203_prestamos.py
 - [X] T027 [P] [US3] Unit test for finance engine anchor case
 ($500.000/12m → ~$46.701/mes, COP enteros, redondeo mitad arriba) in tests/unit/test_finance.py — kernel adelantado por Dev A para US7
 
@@ -119,9 +119,9 @@ routes, templates, static) y `tests/` (acceptance, integration, unit) en la raí
 - [X] T028 [P] [US3] Create Prestamo model with lifecycle ("estado (Pendiente → Aprobado/Rechazado → Activo → En mora → Pagado → Cerrado/Archivado)", "tasa_mensual_aplicada (snapshot)") in app/models/prestamo.py — kernel adelantado por Dev A para US7
 - [X] T029 [P] [US3] Create Cuota model ("número", "valor", "fecha_vencimiento", "abonado (acumulado)", "estado (Pendiente | Parcial | Pagada | En mora)") in app/models/cuota.py — kernel adelantado por Dev A para US7 (agrega desglose capital/interés del motor)
 - [X] T030 [US3] Implement single finance engine (amortización francesa sobre saldo pendiente, parámetros versionados) in app/services/finance.py (depends on T008, T028, T029) — kernel adelantado por Dev A para US7; Dev B lo usa en T032 sin duplicar
-- [ ] T031 [US3] Implement solicitud route with tope validation ("min(% saldo, disponible)") and mora block in app/routes/ahorrador.py (depends on T030)
-- [ ] T032 [US3] Implement atomic aprobar/rechazar routes with liquidity check and cuota generation in app/routes/admin.py (depends on T030)
-- [ ] T033 [P] [US3] Create loan request template with live cuota estimate in app/templates/solicitud_prestamo.html
+- [X] T031 [US3] Implement solicitud route with tope validation ("min(% saldo, disponible)") and mora block in app/routes/ahorrador.py (depends on T030)
+- [X] T032 [US3] Implement atomic aprobar/rechazar routes with liquidity check and cuota generation in app/routes/admin.py (depends on T030)
+- [X] T033 [P] [US3] Create loan request template with live cuota estimate in app/templates/solicitud_prestamo.html
 
 **Checkpoint**: All P1 stories (US1–US3) independently functional — núcleo del MVP
 
@@ -137,14 +137,14 @@ routes, templates, static) y `tests/` (acceptance, integration, unit) en la raí
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T034 [P] [US4] Acceptance test HU-08 (abono total/parcial, recálculo, estados) in tests/acceptance/test_hu08_pagos.py
-- [ ] T035 [P] [US4] Unit test for automatic mora (grace days default 5, parametrizable) and RN-04 block lift on catch-up in tests/unit/test_mora.py
+- [X] T034 [P] [US4] Acceptance test HU-08 (abono total/parcial, recálculo, estados) in tests/acceptance/test_hu08_pagos.py
+- [X] T035 [P] [US4] Unit test for automatic mora (grace days default 5, parametrizable) and RN-04 block lift on catch-up in tests/unit/test_mora.py
 
 ### Implementation for User Story 4
 
-- [ ] T036 [US4] Implement mora evaluation service (scheduled + on-read, flag derivado) in app/services/mora.py
-- [ ] T037 [US4] Implement pago registration route (valor > 0, fecha no futura, descuenta capital, recalcula) in app/routes/admin.py (depends on T036)
-- [ ] T038 [US4] Create cartera view (activos, cuotas, mora automática) in app/templates/cartera.html (depends on T036)
+- [X] T036 [US4] Implement mora evaluation service (scheduled + on-read, flag derivado) in app/services/mora.py
+- [X] T037 [US4] Implement pago registration route (valor > 0, fecha no futura, descuenta capital, recalcula) in app/routes/admin.py (depends on T036)
+- [X] T038 [US4] Create cartera view (activos, cuotas, mora automática) in app/templates/cartera.html (depends on T036)
 
 **Checkpoint**: User Stories 1–4 work — operación completa del fondo (MVP funcional)
 
@@ -160,14 +160,14 @@ routes, templates, static) y `tests/` (acceptance, integration, unit) en la raí
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T039 [P] [US5] Acceptance test HU-09 (tipos, filtros, exportación, rango vacío) in tests/acceptance/test_hu09_reportes.py
-- [ ] T040 [P] [US5] Integration test that report totals equal view queries (single source) in tests/integration/test_reportes.py
+- [X] T039 [P] [US5] Acceptance test HU-09 (tipos, filtros, exportación, rango vacío) in tests/acceptance/test_hu09_reportes.py
+- [X] T040 [P] [US5] Integration test that report totals equal view queries (single source) in tests/integration/test_reportes.py
 
 ### Implementation for User Story 5
 
-- [ ] T041 [US5] Implement report service (openpyxl + WeasyPrint: aportes, préstamos activos, mora, fondos) in app/services/reportes.py
-- [ ] T042 [US5] Implement reportes routes with download responses in app/routes/admin.py (depends on T041)
-- [ ] T043 [P] [US5] Create reportes page template with filters in app/templates/reportes.html
+- [X] T041 [US5] Implement report service (openpyxl + WeasyPrint: aportes, préstamos activos, mora, fondos) in app/services/reportes.py
+- [X] T042 [US5] Implement reportes routes with download responses in app/routes/admin.py (depends on T041)
+- [X] T043 [P] [US5] Create reportes page template with filters in app/templates/reportes.html
 
 **Checkpoint**: User Stories 1–5 work — administración con visibilidad total
 
@@ -183,14 +183,14 @@ routes, templates, static) y `tests/` (acceptance, integration, unit) en la raí
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T044 [P] [US6] Acceptance test HU-10 (vencimiento, cambio de estado, recordatorio) in tests/acceptance/test_hu10_notificaciones.py
+- [X] T044 [P] [US6] Acceptance test HU-10 (vencimiento, cambio de estado, recordatorio) in tests/acceptance/test_hu10_notificaciones.py
 
 ### Implementation for User Story 6
 
-- [ ] T045 [P] [US6] Create Notificacion model ("tipo (vencimiento | cambio_estado | recordatorio_aporte)", "canal (plataforma | correo)") in app/models/notificacion.py
-- [ ] T046 [US6] Implement notification service (in-app + SMTP configurable, plantillas) in app/services/notificaciones.py (depends on T045)
-- [ ] T047 [US6] Hook notifications into prestamo state changes and vencimiento job in app/services/notificaciones.py (depends on T032, T036, T046)
-- [ ] T048 [P] [US6] Create mis notificaciones template in app/templates/notificaciones.html
+- [X] T045 [P] [US6] Create Notificacion model ("tipo (vencimiento | cambio_estado | recordatorio_aporte)", "canal (plataforma | correo)") in app/models/notificacion.py
+- [X] T046 [US6] Implement notification service (in-app + SMTP configurable, plantillas) in app/services/notificaciones.py (depends on T045)
+- [X] T047 [US6] Hook notifications into prestamo state changes and vencimiento job in app/services/notificaciones.py (depends on T032, T036, T046)
+- [X] T048 [P] [US6] Create mis notificaciones template in app/templates/notificaciones.html
 
 **Checkpoint**: User Stories 1–6 work — fondo con comunicación automática
 
@@ -223,11 +223,11 @@ routes, templates, static) y `tests/` (acceptance, integration, unit) en la raí
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] T054 [P] Load test with 200+ ahorradores verifying < 3 s queries (SC-011) in tests/integration/test_carga.py
-- [ ] T055 [P] Security hardening (login rate limit, 403 audit, session expiry) in app/deps.py and app/main.py
-- [ ] T056 Run quickstart.md validation end-to-end (QS-1–QS-8) and fix gaps
-- [ ] T057 [P] Documentation updates (README with setup, roles, parámetros) in README.md
-- [ ] T058 Code cleanup and refactoring across app/ and tests/
+- [X] T054 [P] Load test with 200+ ahorradores verifying < 3 s queries (SC-011) in tests/integration/test_carga.py
+- [X] T055 [P] Security hardening (login rate limit, 403 audit, session expiry) in app/deps.py and app/main.py
+- [X] T056 Run quickstart.md validation end-to-end (QS-1–QS-8) and fix gaps
+- [X] T057 [P] Documentation updates (README with setup, roles, parámetros) in README.md
+- [X] T058 Code cleanup and refactoring across app/ and tests/
 
 ---
 
@@ -333,3 +333,38 @@ Con tres desarrolladores (equipo de 3):
 - Stop at any checkpoint to validate story independently
 - Restricciones de data-model citadas verbatim en cada tarea de modelo — no quedan a discreción de implementación
 - Avoid: vague tasks, same file conflicts, cross-story dependencies that break independence
+
+---
+
+## Phase 11: Convergence
+
+**Purpose**: Cerrar la brecha entre spec/plan/tasks y el código actual (verificado 2026-09-10).
+US1/US2/US7 implementados; US3 solo kernel (modelos+motor), US4/US5/US6 y pulido pendientes.
+No se renumera ni se toca lo anterior; estos IDs continúan la secuencia (M=058).
+
+- [X] T059 Implementar solicitud de préstamo con validación de tope y bloqueo por mora en app/routes/ahorrador.py (POST /prestamos + GET /prestamos/nuevo + GET /prestamos) usando app/services/finance.py y parámetros versionados per FR-005, US3/AC1-AC5 (missing)
+- [X] T060 Implementar aprobación/rechazo atómico con verificación de liquidez y generación de cuotas vía finance.tabla_cuotas en app/routes/admin.py (POST /admin/prestamos/{id}/aprobar|rechazar) con control de concurrencia per FR-006, US3/AC2-AC3 (missing)
+- [X] T061 Implementar evaluación automática de mora por días de gracia parametrizados con bloqueo RN-04 y levantamiento al ponerse al día en app/services/mora.py + wiring on-read/scheduled per FR-005, RN-04, SC-007 (missing)
+- [X] T062 Escribir acceptance test HU-02/HU-03 (solicitud, topes, mora, aprobación, ancla $500k/12m) que FALLE antes de implementar en tests/acceptance/test_hu0203_prestamos.py per US3, Constitution IV (missing)
+- [X] T063 Implementar registro de pagos con imputación interés-primero y recálculo de saldo/estado vía finance.imputar_pago en app/routes/admin.py (POST /admin/pagos) per FR-008, US4/AC1-AC2 (missing)
+- [X] T064 Crear vista de cartera y acceptance HU-08 (abono total/parcial, mora visible) en app/templates/cartera.html + tests/acceptance/test_hu08_pagos.py + tests/unit/test_mora.py per US4/AC3-AC4 (missing)
+- [X] T065 Implementar reportes exportables Excel/PDF desde las consultas de vista con filtros por fecha y descargas en app/services/reportes.py + app/routes/admin.py + app/templates/reportes.html + tests per FR-009, US5/AC1-AC3, SC-009 (missing)
+- [X] T066 Implementar notificaciones con modelo, servicio in-app+SMTP, hooks en cambios de estado/vencimiento y vista propia en app/models/notificacion.py + app/services/notificaciones.py + app/templates/notificaciones.html + tests per FR-010, US6/AC1-AC3, SC-010 (missing)
+- [X] T067 Implementar baja/inactivación de ahorrador bloqueada con saldo o préstamos activos sin eliminar historial en app/routes/admin.py per FR-002, Edge-baja (partial)
+- [X] T068 Implementar administración de parámetros versionados con vigencia y auditoría en app/routes/admin.py (GET/POST /admin/parametros) per FR-012, plan: storage decision (partial)
+- [X] T069 Completar panel admin con métricas del fondo y corregir navegación rota (/prestamos, /notificaciones, /admin/reportes 404) en app/routes/admin.py + app/templates/admin.html + app/templates/base.html per plan: routes contracts (partial)
+- [X] T070 Completar pulido transversal con prueba de carga 200+ ahorradores, hardening de seguridad, validación quickstart y README en tests/integration/test_carga.py + app/deps.py + app/main.py + README.md per SC-011, SC-003, Constitution III/V (missing)
+
+---
+
+## Phase 12: UI prototipo Figma Make
+
+**Purpose**: Aplicar el lenguaje visual del prototipo (navy + tarjeta azul en
+degradado, cards blancas, chips pastel, tab bar móvil). Fuente: thumbnail
+oEmbed del Make (una vista: dashboard móvil); el resto es extrapolación del
+mismo lenguaje. Sin cambios de lógica ni rutas.
+
+- [X] T071 Reescribir main.css con tokens y componentes (saldo, acciones, stats, movs, tabbar) en app/static/css/main.css
+- [X] T072 Dashboard ahorrador estilo prototipo (saludo, tarjeta saldo, acciones, stats, movimientos, tabs) en app/templates/dashboard.html + tabs.html
+- [X] T073 Resto de vistas al mismo lenguaje (login, solicitud, préstamos, avisos, 8 admin en hoja amplia) + fix vista previa conserva motivo
+- [X] T074 Verificación visual Playwright móvil 390px + desktop y regresión 55/55

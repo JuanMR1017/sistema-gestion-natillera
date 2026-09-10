@@ -1,9 +1,17 @@
 {% extends "base.html" %}
+{% block clase %}amplio{% endblock %}
 {% block titulo %}Administración · Natillera{% endblock %}
 {% block contenido %}
 <section class="tarjeta">
   <h1>Administración</h1>
-  <p>Usuarios registrados: {{ total_usuarios }}</p>
-  <p><a href="/admin/ahorradores">Ahorradores</a> · <a href="/admin/reportes">Reportes</a></p>
+  <p>Usuarios registrados: {{ total_usuarios }} · Ahorradores: {{ total_ahorradores }}</p>
+  <p>Fondo total: ${{ fondo_total }} · Prestado: ${{ prestado }} ·
+  Disponible: ${{ disponible }}</p>
+  <p>Solicitudes pendientes: {{ pendientes }} · Préstamos vigentes: {{ vigentes }} ·
+  Cuotas en mora: {{ en_mora }}</p>
+  <p><a href="/admin/ahorradores">Ahorradores</a> · <a href="/admin/aportes">Aportes</a> ·
+  <a href="/admin/prestamos">Préstamos</a> · <a href="/admin/cartera">Cartera</a> ·
+  <a href="/admin/reportes">Reportes</a> · <a href="/admin/parametros">Parámetros</a> ·
+  <a href="/admin/cierre">Cierre anual</a></p>
 </section>
 {% endblock %}

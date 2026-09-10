@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% block clase %}amplio{% endblock %}
 {% block titulo %}Ahorradores · Natillera{% endblock %}
 {% block contenido %}
 <section class="tarjeta">
@@ -16,9 +17,23 @@
 <section class="tarjeta">
   <h2>Registrados</h2>
   <table>
-    <tr><th>Nombre</th><th>Documento</th><th>Área</th><th>Ingreso</th></tr>
+    <tr><th>Nombre</th><th>Documento</th><th>Área</th><th>Ingreso</th><th>Estado</th><th>Acciones</th></tr>
     {% for a in ahorradores %}
-    <tr><td>{{ a.nombre }}</td><td>{{ a.documento }}</td><td>{{ a.area }}</td><td>{{ a.fecha_ingreso }}</td></tr>
+    <tr><td>{{ a.nombre }}</td><td>{{ a.documento }}</td><td>{{ a.area }}</td><td>{{ a.fecha_ingreso }}</td>
+      <td>{% if a.activo %}activo{% else %}inactivo{% endif %}</td>
+      <td>
+        <form method="post" action="/admin/ahorradores/{{ a.id }}/editar" style="display:inline">
+          <input name="nombre" type="text" value="{{ a.nombre }}" required>
+          <input name="area" type="text" value="{{ a.area }}" required>
+          <input name="fecha_ingreso" type="date" value="{{ a.fecha_ingreso }}" required>
+          <button type="submit">Guardar</button>
+        </form>
+        {% if a.activo %}
+        <form method="post" action="/admin/ahorradores/{{ a.id }}/baja" style="display:inline">
+          <button type="submit">Dar de baja</button>
+        </form>
+        {% endif %}
+      </td></tr>
     {% endfor %}
   </table>
 </section>

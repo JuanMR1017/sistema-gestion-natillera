@@ -14,6 +14,7 @@ from app.models import (  # noqa: F401
     ahorrador,
     aporte,
     cuota,
+    notificacion,
     parametro,
     prestamo,
     reparto,

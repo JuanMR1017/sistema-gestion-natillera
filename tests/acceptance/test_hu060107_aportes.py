@@ -100,7 +100,7 @@ def saldo_aumenta(db, ctx, monto):
     from app.services.saldos import fondo_total, saldo_acumulado
 
     assert ctx["resp"].status_code == 303
-    a = db.query(Ahorrador).get(ctx["ahorrador_id"])
+    a = db.get(Ahorrador, ctx["ahorrador_id"])
     assert saldo_acumulado(db, a.id) == monto
     assert fondo_total(db) == monto
 

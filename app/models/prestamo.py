@@ -27,7 +27,9 @@ class Prestamo(Base):
     tasa_mensual_aplicada = Column(Float, nullable=False)  # snapshot del parámetro
     estado = Column(String(20), nullable=False, default=PENDIENTE, index=True)
     aprobado_por = Column(String(80), nullable=True)
+    motivo_rechazo = Column(String(280), nullable=True)
     fecha_solicitud = Column(Date, nullable=False)
     fecha_aprobacion = Column(Date, nullable=True)
 
     cuotas = relationship("Cuota", back_populates="prestamo", cascade="all, delete-orphan")
+    solicitante = relationship("Ahorrador")

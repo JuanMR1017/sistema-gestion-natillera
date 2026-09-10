@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block clase %}amplio{% endblock %}
+{% block titulo %}Parámetros · Administración{% endblock %}
+{% block contenido %}
+<section class="tarjeta">
+  <h1>Parámetros del fondo</h1>
+  <p>Todo cambio queda registrado con vigencia (FR-012). La tasa se aplica como
+  snapshot a cada préstamo nuevo; la gracia y el tope rigen de inmediato.</p>
+  <form method="post" action="/admin/parametros">
+    <label>Clave
+      <select name="clave">
+        <option value="tasa_mensual">tasa_mensual (0–1, ej. 0.015)</option>
+        <option value="tope_porcentaje_saldo">tope_porcentaje_saldo (0–100)</option>
+        <option value="monto_minimo_aporte">monto_minimo_aporte (entero ≥ 0)</option>
+        <option value="dias_gracia_mora">dias_gracia_mora (entero ≥ 0)</option>
+      </select>
+    </label>
+    <label>Valor <input name="valor" required></label>
+    <label>Vigente desde <input name="vigente_desde" type="date" required></label>
+    <button type="submit">Guardar nueva vigencia</button>
+  </form>
+</section>
+<section class="tarjeta">
+  <h2>Historial de vigencias</h2>
+  <table>
+    <tr><th>Clave</th><th>Valor</th><th>Desde</th><th>Hasta</th><th>Por</th></tr>
+    {% for p in parametros %}
+    <tr><td>{{ p.clave }}</td><td>{{ p.valor }}</td><td>{{ p.vigente_desde }}</td>
+      <td>{{ p.vigente_hasta or "actual" }}</td><td>{{ p.modificado_por or "—" }}</td></tr>
+    {% endfor %}
+  </table>
+</section>
+{% endblock %}

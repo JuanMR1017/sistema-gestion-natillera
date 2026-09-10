@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from sqlalchemy import Column, Date, ForeignKey, Integer, String
+from sqlalchemy import Boolean, Column, Date, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
 
 from app.models import Base
@@ -17,6 +17,7 @@ class Ahorrador(Base):
     documento = Column(String(40), nullable=False, unique=True, index=True)
     area = Column(String(80), nullable=False)
     fecha_ingreso = Column(Date, nullable=False)
+    activo = Column(Boolean, nullable=False, default=True)
 
     usuario = relationship("Usuario", uselist=False)
     aportes = relationship("Aporte", back_populates="ahorrador",

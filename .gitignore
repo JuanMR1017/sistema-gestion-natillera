@@ -32,3 +32,6 @@ media/uploads/
 Thumbs.db
 .vscode/
 .idea/
+
+# Artefactos locales de QA con navegador (snapshots, logs)
+.playwright-mcp/

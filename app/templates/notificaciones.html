@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block titulo %}Mis avisos · Natillera{% endblock %}
+{% block contenido %}
+<p class="eyebrow">Notificaciones</p>
+<div class="saludo"><h1>Mis avisos</h1></div>
+<section class="tarjeta">
+  {% for n in avisos %}
+  <div class="mov">
+    <span class="chip {% if n.tipo == 'vencimiento' %}roja{% elif n.tipo == 'recordatorio_aporte' %}azul{% else %}verde{% endif %}">!</span>
+    <span class="txt"><span class="titulo">{{ n.tipo.replace('_', ' ') }}</span><br>
+      <span class="fecha">{{ n.creada_en }} · {% if n.leida %}leída{% else %}no leída{% endif %}</span><br>
+      {{ n.detalle }}</span>
+  </div>
+  {% if not n.leida %}
+  <form method="post" action="/notificaciones/{{ n.id }}/leer">
+    <button type="submit" class="btn btn-primario" style="width:100%">Marcar leída</button>
+  </form>
+  {% endif %}
+  {% else %}
+  <p>No tienes avisos.</p>
+  {% endfor %}
+</section>
+{% endblock %}
+{% block tabs %}{% set tab = 'avisos' %}{% include "tabs.html" %}{% endblock %}

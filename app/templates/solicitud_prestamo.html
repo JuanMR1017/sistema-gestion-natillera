@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block titulo %}Solicitar préstamo · Natillera{% endblock %}
+{% block contenido %}
+<section class="tarjeta">
+  <h1>Solicitar préstamo</h1>
+  <p>Tasa mensual vigente: {{ tasa_pct }}%. El tope aplicable es el menor entre tu
+  saldo disponible y el fondo común.</p>
+  <form method="post" action="/prestamos">
+    <label>Monto (COP) <input name="monto" type="number" min="1" step="1"
+      value="{{ monto }}" required></label>
+    <label>Plazo (meses, máx. {{ plazo_maximo }}) <input name="plazo_meses"
+      type="number" min="1" max="{{ plazo_maximo }}" value="{{ plazo_meses }}" required></label>
+    <label>Motivo <input name="motivo" type="text" maxlength="280"
+      value="{{ motivo }}" required></label>
+    <div class="acciones">
+      <button type="submit" formmethod="get" formaction="/prestamos/nuevo" class="btn btn-claro">Vista previa</button>
+      <button type="submit" class="btn btn-primario">Enviar solicitud</button>
+    </div>
+  </form>
+  {% if estimado %}
+  <h2>Cuota estimada</h2>
+  <div class="tarjeta-saldo">
+    <p class="etiqueta">Cuota estimada</p>
+    <p class="monto">${{ estimado.cuota }}/mes</p>
+    <div class="meta"><span>Préstamo de ${{ estimado.monto }} a {{ estimado.plazo_meses }} meses</span><span>Tasa {{ estimado.tasa_pct }}%</span></div>
+  </div>
+  {% endif %}
+  <p><a href="/prestamos">Ver mis solicitudes y préstamos</a></p>
+</section>
+{% endblock %}
+{% block tabs %}{% set tab = 'prestamos' %}{% include "tabs.html" %}{% endblock %}

@@ -1,28 +1,180 @@
+/* Lenguaje visual del prototipo Figma Make: fintech navy + tarjeta azul.
+   Móvil primero (columna 430px); admin en hoja amplia. */
+
 :root {
+  --navy-900: #060d1f;
+  --navy-800: #0b1b3a;
   --azul: #0f2a5c;
-  --azul-claro: #1e4fa3;
+  --azul-real: #1e5aa8;
+  --azul-vivo: #2f7de1;
   --blanco: #ffffff;
-  --fondo: #f2f5fa;
-  --texto: #1c2440;
-  --ok: #157a3d;
-  --error: #b3261e;
+  --tinta: #1c2440;
+  --muted: #6b7693;
+  --linea: #e6ebf5;
+  --verde: #16a34a;
+  --verde-bg: #dff5e6;
+  --rojo: #dc2626;
+  --rojo-bg: #fde4e4;
+  --lila: #7c5cff;
+  --radio: 1.125rem;
+  --sombra: 0 10px 30px rgba(3, 10, 30, 0.25);
+  --sombra-suave: 0 2px 10px rgba(15, 42, 92, 0.1);
 }
+
 * { box-sizing: border-box; }
-body { margin: 0; font-family: system-ui, sans-serif; background: var(--fondo); color: var(--texto); }
-.topbar { background: var(--azul); color: var(--blanco); padding: 0.75rem 1rem; display: flex; gap: 1rem; align-items: center; }
-.topbar .marca { font-weight: 700; }
-.topbar nav { display: flex; gap: 0.75rem; margin-left: auto; }
-.topbar a { color: var(--blanco); text-decoration: none; }
-.contenedor { max-width: 960px; margin: 1rem auto; padding: 0 1rem; }
-.tarjeta { background: var(--blanco); border-radius: 0.75rem; padding: 1rem; margin-bottom: 1rem; box-shadow: 0 1px 4px rgba(15,42,92,.12); }
-.saldo { font-size: 2rem; font-weight: 800; color: var(--azul); }
-form.campo { display: grid; gap: 0.5rem; max-width: 420px; }
-input, select, button { font-size: 1rem; padding: 0.5rem; border-radius: 0.5rem; border: 1px solid #c4cede; }
-button { background: var(--azul); color: var(--blanco); border: none; cursor: pointer; }
+body {
+  margin: 0;
+  font-family: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: var(--blanco);
+  background: radial-gradient(1200px 600px at 80% -10%, #14305f 0%, var(--navy-900) 60%) fixed,
+    var(--navy-900);
+  min-height: 100vh;
+}
+
+/* Barra superior (admin / escritorio) */
+.topbar {
+  display: flex; gap: 1rem; align-items: center;
+  padding: 0.7rem 1.25rem;
+  background: rgba(6, 13, 31, 0.85);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.topbar .marca { font-weight: 800; letter-spacing: 0.02em; }
+.topbar nav { display: flex; gap: 0.9rem; margin-left: auto; align-items: center; }
+.topbar a { color: #cdd8ee; text-decoration: none; font-size: 0.95rem; }
+.topbar a:hover { color: var(--blanco); }
+
+/* Contenedores */
+.contenedor { margin: 0 auto; padding: 1rem 1rem 6rem; }
+.contenedor.movil { max-width: 430px; }
+.contenedor.amplio { max-width: 1000px; }
+.hoja {
+  background: #f2f5fa; color: var(--tinta);
+  border-radius: 1.25rem; padding: 1.25rem;
+  box-shadow: var(--sombra);
+}
+
+/* Saludo */
+.eyebrow {
+  text-transform: uppercase; letter-spacing: 0.14em;
+  font-size: 0.7rem; color: #9fb0d0; margin: 0.25rem 0 0;
+}
+.saludo { display: flex; align-items: center; gap: 0.75rem; }
+.saludo h1 { font-size: 1.4rem; margin: 0.1rem 0 1rem; }
+.avatar {
+  margin-left: auto; width: 2.6rem; height: 2.6rem; border-radius: 50%;
+  background: linear-gradient(135deg, var(--azul-vivo), var(--lila));
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; color: var(--blanco);
+}
+
+/* Tarjeta de saldo en degradado */
+.tarjeta-saldo {
+  background: linear-gradient(135deg, var(--azul-real), var(--azul-vivo));
+  border-radius: var(--radio); padding: 1.1rem 1.2rem;
+  box-shadow: var(--sombra); margin-bottom: 1rem; color: var(--blanco);
+}
+.tarjeta-saldo .etiqueta {
+  text-transform: uppercase; letter-spacing: 0.12em;
+  font-size: 0.68rem; opacity: 0.85; margin: 0;
+}
+.tarjeta-saldo .monto { font-size: 2.1rem; font-weight: 800; margin: 0.15rem 0 0.6rem; }
+.barra { height: 0.5rem; border-radius: 1rem; background: rgba(255, 255, 255, 0.3); }
+.barra > span { display: block; height: 100%; border-radius: 1rem; background: var(--blanco); }
+.meta { display: flex; justify-content: space-between; font-size: 0.8rem; opacity: 0.9; margin-top: 0.4rem; }
+
+/* Acciones rápidas */
+.acciones { display: flex; gap: 0.75rem; margin-bottom: 1rem; }
+.btn {
+  display: inline-block; text-decoration: none; text-align: center;
+  font-weight: 700; font-size: 0.95rem; padding: 0.8rem 1rem;
+  border-radius: 0.9rem; border: none; cursor: pointer;
+}
+.btn-primario { background: var(--azul-vivo); color: var(--blanco); flex: 2; box-shadow: var(--sombra-suave); }
+.btn-claro { background: var(--blanco); color: var(--azul); flex: 1; }
+button.btn-primario { background: var(--azul-vivo); color: var(--blanco); }
+button { font-size: 1rem; padding: 0.7rem 1rem; border-radius: 0.9rem; border: none; background: var(--azul-vivo); color: var(--blanco); cursor: pointer; font-weight: 700; }
 button.secundario { background: var(--blanco); color: var(--azul); border: 1px solid var(--azul); }
-table { width: 100%; border-collapse: collapse; }
-th, td { text-align: left; padding: 0.5rem; border-bottom: 1px solid #e2e8f2; }
-.alerta { padding: 0.6rem; border-radius: 0.5rem; }
-.alerta.error { background: #fdecea; color: var(--error); }
-.alerta.ok { background: #e6f4ea; color: var(--ok); }
-@media (max-width: 640px) { .saldo { font-size: 1.5rem; } table { font-size: 0.9rem; } }
+
+/* Mini stats */
+.stats { display: flex; gap: 0.75rem; margin-bottom: 1rem; }
+.stat {
+  flex: 1; background: var(--blanco); color: var(--tinta);
+  border-radius: var(--radio); padding: 0.9rem; box-shadow: var(--sombra-suave);
+  border-top: 4px solid var(--azul-vivo);
+}
+.stat.lila { border-top-color: var(--lila); }
+.stat .numero { font-size: 1.35rem; font-weight: 800; }
+.stat .detalle { font-size: 0.78rem; color: var(--muted); }
+
+/* Tarjetas y movimientos */
+.tarjeta {
+  background: var(--blanco); color: var(--tinta);
+  border-radius: var(--radio); padding: 1rem; margin-bottom: 1rem;
+  box-shadow: var(--sombra-suave);
+}
+.tarjeta h1, .tarjeta h2 { margin-top: 0; }
+.seccion { display: flex; align-items: baseline; margin: 1.1rem 0 0.6rem; }
+.seccion h2 { font-size: 1rem; margin: 0; }
+.seccion a { margin-left: auto; color: var(--azul-vivo); text-decoration: none; font-size: 0.85rem; font-weight: 700; }
+.mov { display: flex; gap: 0.8rem; align-items: center; padding: 0.7rem 0; border-bottom: 1px solid var(--linea); }
+.mov:last-child { border-bottom: none; }
+.chip {
+  width: 2.4rem; height: 2.4rem; border-radius: 0.8rem; flex: none;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 1.1rem;
+}
+.chip.verde { background: var(--verde-bg); color: var(--verde); }
+.chip.roja { background: var(--rojo-bg); color: var(--rojo); }
+.chip.azul { background: #dbeafe; color: var(--azul-real); }
+.mov .txt { flex: 1; }
+.mov .titulo { font-weight: 700; font-size: 0.92rem; }
+.mov .fecha { font-size: 0.78rem; color: var(--muted); }
+.mov .valor { font-weight: 800; }
+.mov .valor.pos { color: var(--verde); }
+.mov .valor.neg { color: var(--rojo); }
+
+/* Formularios */
+form.campo { display: grid; gap: 0.7rem; }
+label { display: grid; gap: 0.3rem; font-size: 0.9rem; font-weight: 600; }
+input, select {
+  font-size: 1rem; padding: 0.7rem 0.8rem;
+  border-radius: 0.9rem; border: 1px solid #c4cede;
+  background: var(--blanco); color: var(--tinta); width: 100%;
+}
+
+/* Tablas (admin) */
+table { width: 100%; border-collapse: collapse; background: var(--blanco); color: var(--tinta); }
+th, td { text-align: left; padding: 0.55rem; border-bottom: 1px solid var(--linea); font-size: 0.92rem; }
+th { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+
+/* Alertas */
+.alerta { padding: 0.7rem 0.9rem; border-radius: 0.9rem; margin-bottom: 1rem; }
+.alerta.error { background: #fdecea; color: #b3261e; }
+.alerta.ok { background: #e6f4ea; color: #157a3d; }
+
+/* Tab bar inferior (ahorrador) */
+.tabbar {
+  position: fixed; left: 50%; transform: translateX(-50%);
+  bottom: 0.75rem; width: min(430px, calc(100% - 1.5rem));
+  display: flex; background: rgba(6, 13, 31, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1.25rem; padding: 0.5rem; z-index: 10;
+}
+.tabbar a {
+  flex: 1; text-align: center; color: #9fb0d0; text-decoration: none;
+  font-size: 0.75rem; font-weight: 700; padding: 0.5rem 0; border-radius: 0.9rem;
+}
+.tabbar a.activa { background: var(--azul-vivo); color: var(--blanco); }
+
+/* Login */
+.login-hoja { text-align: center; padding-top: 3rem; }
+.login-hoja .marca-grande { font-size: 1.6rem; font-weight: 800; margin-bottom: 0.25rem; }
+.login-hoja .sub { color: #9fb0d0; margin-bottom: 1.5rem; }
+
+@media (min-width: 700px) {
+  .tarjeta-saldo .monto { font-size: 2.4rem; }
+}
+@media (max-width: 640px) {
+  .topbar nav a { display: none; }
+  table { font-size: 0.85rem; }
+}
